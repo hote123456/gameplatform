@@ -9,5 +9,5 @@ def hello():
 
 
 # app.add_url_rule('/hello', view_func=hello)
-
-app.run(host='0.0.0.0', debug=app.config['DEBUG'], port=81)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=app.config['DEBUG'], port=81)
