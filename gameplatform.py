@@ -8,9 +8,10 @@ app.config.from_object('config')
 def hello():
     # status code 200,404,301
     headers = {
-        'content-type': 'text/plain'
+        'content-type': 'text/plain',
+        'location':'http://baidu.com'
     }
-    response = make_response('<html></html>', 404)
+    response = make_response('<html></html>', 301)
     response.headers = headers
     return response
 
