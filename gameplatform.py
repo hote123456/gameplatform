@@ -9,11 +9,12 @@ def hello():
     # status code 200,404,301
     headers = {
         'content-type': 'application/json',
-        'location':'http://baidu.com'
+        'location': 'http://baidu.com'
     }
-    response = make_response('json', 301)
-    response.headers = headers
-    return response
+    # response = make_response('json', 301)
+    # response.headers = headers
+    # return response
+    return '<html></html>', 301, headers
 
 
 # app.add_url_rule('/hello', view_func=hello)
