@@ -1,5 +1,9 @@
-from flask import Flask, make_response
+from flask import Flask, make_response, jsonify
+import json
+
 from helper import is_isbn_or_key
+from yushu_book import YuShuBook
+
 app = Flask(__name__)
 app.config.from_object('config')
 
@@ -22,8 +26,13 @@ def search(q, page):
     """
     :return: search data
     """
-    is_isbn_or_key(q)
-    pass
+    isbn_or_key = is_isbn_or_key(q)
+    if is_isbn_or_key == 'isbn':
+        YuShuBook.search_by_isbn(q)
+    else:
+        result = YuShuBook.search_by_keyword(q)
+    return jsonify(result)
+    # return json.dumps(result), 200, {'content-type': 'application/json'}
 
 
 # app.add_url_rule('/hello', view_func=hello)
