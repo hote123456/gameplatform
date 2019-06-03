@@ -1,5 +1,5 @@
 from flask import Flask, make_response
-
+from helper import is_isbn_or_key
 app = Flask(__name__)
 app.config.from_object('config')
 
@@ -15,6 +15,15 @@ def hello():
     # response.headers = headers
     # return response
     return '<html></html>', 301, headers
+
+
+@app.route('/book/search/<q>/<page>')
+def search(q, page):
+    """
+    :return: search data
+    """
+    is_isbn_or_key(q)
+    pass
 
 
 # app.add_url_rule('/hello', view_func=hello)
