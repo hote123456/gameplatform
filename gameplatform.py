@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, make_response
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -6,7 +6,13 @@ app.config.from_object('config')
 
 @app.route('/hello/')
 def hello():
-    return 'hello word'
+    # status code 200,404,301
+    headers = {
+        'content-type': 'text/plain'
+    }
+    response = make_response('<html></html>', 404)
+    response.headers = headers
+    return response
 
 
 # app.add_url_rule('/hello', view_func=hello)
