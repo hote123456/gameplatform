@@ -3,4 +3,4 @@
 # @Author  : Magic
 # @File    : config.py
 
-DEBUG = True
+DEBUG = False

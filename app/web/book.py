@@ -3,19 +3,21 @@
 # @Author  : Magic
 # @File    : book.py
 import json
-from flask import jsonify
+from flask import jsonify, Blueprint
 from helper import is_isbn_or_key
 from yushu_book import YuShuBook
 
+# 蓝图
+web = Blueprint('web',__name__)
 
-@app.route('/book/search/<q>/<page>')
+@web.route('/book/search/<q>/<page>')
 def search(q, page):
     """
     :return: search data
     """
     isbn_or_key = is_isbn_or_key(q)
     if is_isbn_or_key == 'isbn':
-        YuShuBook.search_by_isbn(q)
+        result = YuShuBook.search_by_isbn(q)
     else:
         result = YuShuBook.search_by_keyword(q)
     return jsonify(result)

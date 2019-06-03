@@ -1,9 +1,6 @@
-from flask import Flask, make_response, jsonify
+from app import create_app
 
-app = Flask(__name__)
-app.config.from_object('config')
-
-# app.add_url_rule('/hello', view_func=hello)
+app = create_app()
 if __name__ == '__main__':
     # 生产环境 ngix+uwsgi
     app.run(host='0.0.0.0', debug=app.config['DEBUG'], port=81)
